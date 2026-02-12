@@ -10,6 +10,7 @@ modules:
       nonfree: rpmfusion
     install:
       packages:
+        - akmods
         - ipu6-camera-hal
 
   - type: script
