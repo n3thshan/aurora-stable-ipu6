@@ -1,35 +1,19 @@
-# Simple name for your image
 name: aurora-stable-ipu6
-description: Aurora with Intel IPU6 camera drivers baked in
+description: Aurora with Intel IPU6 camera drivers
 
-# Base image - using Aurora 41 (KDE version of Bluefin/Fedora)
 base-image: ghcr.io/ublue-os/aurora
 image-version: stable
 
 modules:
-  # 1. Enable RPM Fusion Repositories
-  - type: rpm-ostree
+  - type: dnf
     repos:
-      - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm
-      - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
+      nonfree: rpmfusion
     install:
-      # These packages are needed on your laptop to compile the driver
-      - ipu6-camera-bins
-      - ipu6-camera-hal
-      - akmods
-      
-  # 2. Run the custom script to install the IPU6 driver
-  # This script "tricks" the build so it doesn't crash in GitHub Actions
+      packages:
+        - ipu6-camera-hal
+
   - type: script
     scripts:
-      - install-ipu6.sh
+      - build-ipu6.sh
 
-  # 3. Standard Aurora/uBlue features
   - type: signing
-    # This ensures your image is signed (standard for BlueBuild)
-
-  # 4. Optional: Add any other apps you want baked into the image here
-  # - type: rpm-ostree
-  #   install:
-  #     - vlc
-  #     - git
