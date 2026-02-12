@@ -5,7 +5,7 @@ set -oue pipefail
 ln -sf /usr/bin/true /usr/bin/akmods
 
 # 2. Install the IPU6 packages (Baked into your image)
-dnf install -y akmod-intel-ipu6 ipu6-camera-hal ipu6-camera-bins v4l2-relayd
+dnf install -y akmod-intel-ipu6
 
 # 3. Restore the real akmods for the user's laptop
 rm /usr/bin/akmods
