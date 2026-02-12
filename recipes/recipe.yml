@@ -1,22 +1,17 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 
-name: aurora-ipu6
+name: aurora-stable-ipu6
 description: Aurora with IPU6 camera packages
 
 base-image: ghcr.io/ublue-os/aurora
 image-version: stable
 
 modules:
-  - type: script
-    snippets:
-      - dnf5 -y --refresh distro-sync
-      
   - type: dnf
     repos:
       nonfree: rpmfusion
     install:
-      allow-erasing: true
       packages:
         - akmod-intel-ipu6
         - ipu6-camera-hal
