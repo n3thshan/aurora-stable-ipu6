@@ -14,9 +14,9 @@ modules:
     install:
       packages:
         - ipu6-camera-hal
-
+        
   - type: script
     snippets:
-      - dnf5 -y --refresh --setopt=tsflags=noscripts install akmod-intel-ipu6
+      - dnf5 -y --refresh --setopt=tsflags= --setopt=tsflags=noscripts --setopt=tsflags=notriggers install akmod-intel-ipu6
 
   - type: signing
