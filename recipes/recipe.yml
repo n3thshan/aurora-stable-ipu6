@@ -20,6 +20,5 @@ modules:
       packages:
         - akmod-intel-ipu6
         - ipu6-camera-hal
-        - kmodtool
 
   - type: signing
