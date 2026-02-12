@@ -8,6 +8,10 @@ base-image: ghcr.io/ublue-os/aurora
 image-version: stable
 
 modules:
+  - type: script
+    snippets:
+      - dnf5 -y --refresh distro-sync
+      
   - type: dnf
     repos:
       nonfree: rpmfusion
