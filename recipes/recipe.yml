@@ -14,9 +14,14 @@ modules:
     install:
       packages:
         - ipu6-camera-hal
-        
+        - akmods
+        - kmodtool
+
   - type: script
     snippets:
-      - dnf5 -y --refresh --setopt=tsflags= --setopt=tsflags=noscripts --setopt=tsflags=notriggers install akmod-intel-ipu6
+      - mkdir -p /tmp/ipu6-akmod && cd /tmp/ipu6-akmod
+      - dnf5 -y --refresh download akmod-intel-ipu6
+      - rpm -Uvh --noscripts --notriggers ./*.rpm
+      - rm -rf /tmp/ipu6-akmod
 
   - type: signing
