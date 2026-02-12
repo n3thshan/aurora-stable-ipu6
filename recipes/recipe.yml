@@ -12,6 +12,7 @@ modules:
     repos:
       nonfree: rpmfusion
     install:
+      allow-erasing: true
       packages:
         - akmod-intel-ipu6
         - ipu6-camera-hal
