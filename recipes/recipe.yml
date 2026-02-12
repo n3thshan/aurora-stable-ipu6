@@ -13,7 +13,10 @@ modules:
       nonfree: rpmfusion
     install:
       packages:
-        - akmod-intel-ipu6
         - ipu6-camera-hal
+
+  - type: script
+    snippets:
+      - dnf5 -y --refresh --setopt=tsflags=noscripts install akmod-intel-ipu6
 
   - type: signing
