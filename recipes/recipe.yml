@@ -5,16 +5,15 @@ base-image: ghcr.io/ublue-os/aurora
 image-version: stable
 
 modules:
-  - type: dnf
-    repos:
-      nonfree: rpmfusion
-    install:
-      packages:
-        - akmods
-        - ipu6-camera-hal
+  - type: containerfile
+    snippets:
+      - COPY --from=ghcr.io/n3thshan/akmod-intel-ipu6:latest /rpms/ /tmp/rpms/
+      - RUN rpm-ostree install /tmp/rpms/kmod-intel-ipu6*.rpm && rm -rf /tmp/rpms
 
-  - type: script
-    scripts:
-      - build-ipu6.sh
+  - type: rpm-ostree
+    repos:
+      - rpmfusion-nonfree-custom.repo
+    install:
+      - ipu6-camera-hal
 
   - type: signing
