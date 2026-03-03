@@ -10,9 +10,9 @@ modules:
       - COPY --from=ghcr.io/n3thshan/akmod-intel-ipu6:latest /rpms/ /tmp/rpms/
       - RUN rpm-ostree install /tmp/rpms/kmod-intel-ipu6*.rpm && rm -rf /tmp/rpms
 
-  - type: rpm-ostree
+  - type: dnf
     repos:
-      - rpmfusion-nonfree-custom.repo
+      nonfree: rpmfusion
     install:
       - ipu6-camera-hal
 
